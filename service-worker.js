@@ -32,8 +32,7 @@ self.addEventListener("activate", (event) => {
 self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET") return;
 
-  // Network-first keeps GitHub Pages edits from appearing stale on the iPad,
-  // while still falling back to the cached event app if Wi-Fi drops.
+
   event.respondWith(
     fetch(event.request).then((response) => {
       const copy = response.clone();
