@@ -26,8 +26,9 @@
 
   const STORAGE_WINS = "casinoNightV1_wins";
   const STORAGE_SPINS = "casinoNightV1_spins";
-  const cycles = 9;
+  const cycles = 14;
   let spinning = false;
+  let ready = false;
   let currentIndexes = [0, 1, 2];
   let autoCloseTimer = null;
   let audioContext = null;
@@ -46,6 +47,25 @@
       crypto.getRandomValues(arr);
     } while (arr[0] >= limit);
     return arr[0] % max;
+  }
+
+  async function preloadImages() {
+    const sources = [
+      ...config.symbols.map((symbol) => symbol.image),
+      "assets/celebrating-baby.png",
+      "assets/crying-guy.png"
+    ];
+
+    await Promise.all(sources.map((src) => new Promise((resolve) => {
+      const img = new Image();
+      img.decoding = "async";
+      img.onload = async () => {
+        try { if (img.decode) await img.decode(); } catch (_) {}
+        resolve();
+      };
+      img.onerror = resolve;
+      img.src = src;
+    })));
   }
 
   function buildReels() {
@@ -132,10 +152,12 @@
       const h = itemSize();
       const viewport = strip.parentElement.getBoundingClientRect().height;
       const centerOffset = (viewport - h) / 2;
-      const extraCycles = 4 + reelIndex * 2;
+      const configuredCycles = Array.isArray(config.spinCycles) ? Number(config.spinCycles[reelIndex]) : NaN;
+      const extraCycles = Number.isFinite(configuredCycles) ? Math.max(2, Math.floor(configuredCycles)) : 3 + reelIndex;
       const startCycle = 1;
       const targetItem = (startCycle + extraCycles) * config.symbols.length + targetSymbolIndex;
-      const duration = 1250 + reelIndex * 420;
+      const configuredDuration = Array.isArray(config.spinDurationMs) ? Number(config.spinDurationMs[reelIndex]) : NaN;
+      const duration = Number.isFinite(configuredDuration) ? Math.max(1800, configuredDuration) : 3300 + reelIndex * 700;
 
       requestAnimationFrame(() => {
         strip.classList.add("spinning");
@@ -154,7 +176,7 @@
   }
 
   async function spin() {
-    if (spinning || overlay.classList.contains("open")) return;
+    if (!ready || spinning || overlay.classList.contains("open")) return;
     spinning = true;
     spinButton.disabled = true;
     spinLabel.textContent = "SPINNING";
@@ -272,6 +294,11 @@
   }
 
   function updateOddsNote() {
+    if (!config.showOdds) {
+      oddsNote.textContent = "";
+      oddsNote.style.display = "none";
+      return;
+    }
     if (config.oddsMode === "custom") {
       const n = Math.max(2, Math.floor(Number(config.jackpotOneIn) || 16));
       oddsNote.textContent = `Random jackpot odds: 1 in ${n} per spin`;
@@ -299,10 +326,34 @@
     history.replaceState({}, "", location.pathname);
   }
 
-  buildReels();
-  updateOddsNote();
+  async function initializeGame() {
+    spinButton.disabled = true;
+    spinLabel.textContent = "LOADING";
+    statusText.textContent = "Loading values…";
+
+    await preloadImages();
+    buildReels();
+    updateOddsNote();
+
+    // Give Safari one paint after image decoding before enabling the first spin.
+    await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+    ready = true;
+    spinButton.disabled = false;
+    spinLabel.textContent = "SPIN";
+    statusText.textContent = "Tap SPIN to play";
+  }
+
+  initializeGame().catch(() => {
+    // If decoding fails for any reason, still let the game run with normal browser loading.
+    buildReels();
+    updateOddsNote();
+    ready = true;
+    spinButton.disabled = false;
+    spinLabel.textContent = "SPIN";
+    statusText.textContent = "Tap SPIN to play";
+  });
 
   if ("serviceWorker" in navigator && location.protocol !== "file:") {
-    navigator.serviceWorker.register("service-worker.js").catch(() => {});
+    navigator.serviceWorker.register("service-worker.js?v=1.1.0").catch(() => {});
   }
 })();

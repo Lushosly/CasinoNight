@@ -1,10 +1,10 @@
-const CACHE = "casino-night-v1-1";
+const CACHE = "casino-night-v1-2";
 const ASSETS = [
   "./",
   "./index.html",
-  "./styles.css",
-  "./config.js",
-  "./game.js",
+  "./styles.css?v=1.1.0",
+  "./config.js?v=1.1.0",
+  "./game.js?v=1.1.0",
   "./manifest.webmanifest",
   "./assets/value-red.png",
   "./assets/value-yellow.png",
@@ -31,11 +31,14 @@ self.addEventListener("activate", (event) => {
 
 self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET") return;
+
+  // Network-first keeps GitHub Pages edits from appearing stale on the iPad,
+  // while still falling back to the cached event app if Wi-Fi drops.
   event.respondWith(
-    caches.match(event.request).then((cached) => cached || fetch(event.request).then((response) => {
+    fetch(event.request).then((response) => {
       const copy = response.clone();
       caches.open(CACHE).then((cache) => cache.put(event.request, copy));
       return response;
-    }))
+    }).catch(() => caches.match(event.request))
   );
 });

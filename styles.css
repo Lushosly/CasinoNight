@@ -189,7 +189,7 @@ button { font: inherit; }
   transform: translateY(0);
 }
 
-.reel-strip.spinning img { filter: blur(2.5px) saturate(1.15); }
+.reel-strip.spinning img { filter: blur(.45px) saturate(1.06); }
 
 .reel-item {
   width: var(--reel-size);
@@ -206,7 +206,10 @@ button { font: inherit; }
   pointer-events: none;
   -webkit-user-drag: none;
   filter: drop-shadow(0 6px 5px rgba(48,36,0,.19));
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
+
 
 .payline {
   position: absolute;

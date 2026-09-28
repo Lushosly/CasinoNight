@@ -1,80 +1,31 @@
-# Casino Night V1
+# Casino Night V1.1
 
-A touch-friendly, animated 3-reel slot machine for iPad / GitHub Pages.
+This update addresses the two iPad issues found in V1:
 
-## Current game rules
-
-- 4 equally likely value symbols.
-- Jackpot = all 3 reels land on the same value.
-- Default mode is **natural random**: each reel is chosen independently with `crypto.getRandomValues()`.
-- Natural jackpot odds are therefore **1 in 16 (6.25%) per spin**.
-- A loss displays the crying character and “Better luck next time.”
-- A win displays “Jackpot!”, the celebrating baby, confetti, and a win sound.
+- **Slower spins:** reels now stop at about 3.3s, 4.0s, and 4.7s.
+- **Visible symbols while spinning:** value images are preloaded/decoded before SPIN is enabled, the motion blur is much lighter, and each reel cycles slowly enough to visibly pass through all four values (including red).
+- **Less stale caching on iPad:** V1.1 uses versioned JS/CSS URLs and a new network-first service worker cache.
 
 ## Upload to GitHub Pages
 
-1. Create a new repository, for example `casino-night`.
-2. Upload **all files and the `assets` folder** from this package to the repository root.
-3. Commit the files to the `main` branch.
-4. In GitHub: **Settings → Pages**.
-5. Under **Build and deployment**, choose **Deploy from a branch**.
-6. Select `main` and `/ (root)`, then save.
-7. GitHub will show the public Pages URL when deployment finishes.
-8. Open that URL in Safari on the iPad. For a kiosk-like experience, use **Share → Add to Home Screen**.
+Replace the files in the repository root with the contents of this folder, commit, and wait for GitHub Pages to redeploy.
 
-## Easy customization
+On the iPad, after GitHub finishes deploying:
 
-Open `config.js`.
+1. Reload the page once.
+2. If the old version still appears, close the tab and reopen the GitHub Pages URL. The new cache version should then take over.
 
-### Change title
+## Easy spin-speed adjustment
+
+Open `config.js` and edit:
 
 ```js
-title: "Casino Night",
+spinDurationMs: [3300, 4000, 4700],
+spinCycles: [3, 4, 5],
 ```
 
-### Keep natural 1-in-16 odds
+Higher duration numbers make the reels slower. The three numbers correspond to reel 1, reel 2, and reel 3.
 
-```js
-oddsMode: "natural",
-```
+## Jackpot rule
 
-### Use custom random odds, e.g. 1 in 25
-
-```js
-oddsMode: "custom",
-jackpotOneIn: 25,
-```
-
-The winning spin is still randomly selected. It is not assigned to a predetermined player/spin.
-
-### Optional prize cap on the event iPad
-
-```js
-maximumJackpots: 10,
-```
-
-This uses `localStorage` on that browser/device. Leave as `null` for unlimited jackpots.
-
-To clear the local win/spin counters, open the site once with `?reset=1` at the end of the URL.
-
-Example:
-
-`https://YOURNAME.github.io/casino-night/?reset=1`
-
-The page automatically removes the query string after resetting.
-
-## Important note for real prizes
-
-This V1 is a **client-side GitHub Pages game**. It is suitable when guests only interact with the event iPad and the prize risk is modest. Anyone with technical access to the browser/source code can inspect or modify client-side logic.
-
-For high-value prizes, strict inventory control, multiple iPads, or audit requirements, move the result generation and prize count to a small server/API. The animation/UI can stay exactly the same.
-
-## Files
-
-- `index.html` — page structure
-- `styles.css` — machine, reel, result, iPad styling
-- `config.js` — title, odds, prize cap, symbols
-- `game.js` — secure random result generation and animation
-- `manifest.webmanifest` — Add-to-Home-Screen metadata
-- `service-worker.js` — offline cache after first successful load
-- `assets/` — supplied artwork and value images
+Default remains natural random odds with four equally likely values. Three identical symbols = jackpot, which is naturally **1 in 16 (6.25%) per spin**.
