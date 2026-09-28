@@ -3,13 +3,13 @@ window.CASINO_CONFIG = {
 
 
   oddsMode: "custom",
-  jackpotOneIn: 6,
+  jackpotOneIn: 5,
 
 
   maximumJackpots: null,
 
-  resultDisplayWinMs: 5600,
-  resultDisplayLoseMs: 7600,
+  resultDisplayWinMs: 5000,
+  resultDisplayLoseMs: 4000,
   sounds: true,
   confetti: true,
   showOdds: false,
