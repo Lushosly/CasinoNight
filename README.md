@@ -1,4 +1,4 @@
-# Jackpot de los valores V1.3
+# Jackpot de los valores V1.5
 
 This update addresses the two iPad issues found in V1:
 
@@ -31,7 +31,7 @@ Higher duration numbers make the reels slower. The three numbers correspond to r
 Default remains natural random odds with four equally likely values. Three identical symbols = jackpot, which is naturally **1 in 16 (6.25%) per spin**.
 
 
-## V1.3 fixes
+## V1.5 fixes
 
 - Reels spin more slowly for better visibility on iPad/Safari
 - Symbol backgrounds were cleaned to transparent PNGs so the white boxes no longer show

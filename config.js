@@ -1,5 +1,5 @@
 /*
-  Jackpot de los valores V1.3 configuration
+  Jackpot de los valores V1.5 configuration
   -------------------------------
   You can safely change these values without touching the game code.
 */
@@ -16,14 +16,15 @@ window.CASINO_CONFIG = {
   // on this iPad/browser. Leave null for no limit.
   maximumJackpots: null,
 
-  resultDisplayMs: 4600,
+  resultDisplayWinMs: 5600,
+  resultDisplayLoseMs: 7600,
   sounds: true,
   confetti: true,
   showOdds: false,
 
   // V1.2: slower reels, more visible motion, better Safari rendering.
   // Each later reel stops a little after the previous one.
-  spinDurationMs: [4200, 5100, 6000],
+  spinDurationMs: [4700, 5700, 6700],
   spinCycles: [4, 5, 6],
 
   symbols: [

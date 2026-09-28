@@ -180,7 +180,7 @@
     spinning = true;
     spinButton.disabled = true;
     spinLabel.textContent = "SPINNING";
-    statusText.textContent = "Good luck!";
+    statusText.textContent = "¡buena suerte!";
     playSpinSound();
 
     const result = generateResult();
@@ -209,10 +209,10 @@
       playWinSound();
     } else {
       resultKicker.textContent = "Not this spin";
-      resultTitle.textContent = "Mejor suerte para la próxima";
+      resultTitle.textContent = "Mejor suerte para la próxima!";
       resultImage.src = "assets/crying-guy.png";
       resultImage.alt = "Crying character";
-      resultMessage.textContent = "Give it another spin!";
+      resultMessage.textContent = "Toca SPIN para intentarlo otra vez.";
       confettiLayer.innerHTML = "";
       playLoseSound();
     }
@@ -222,7 +222,10 @@
     playAgainButton.focus({ preventScroll: true });
 
     window.clearTimeout(autoCloseTimer);
-    autoCloseTimer = window.setTimeout(closeResult, Math.max(1800, Number(config.resultDisplayMs) || 3600));
+    const displayMs = won
+      ? Math.max(2200, Number(config.resultDisplayWinMs) || 5200)
+      : Math.max(2600, Number(config.resultDisplayLoseMs) || 6800);
+    autoCloseTimer = window.setTimeout(closeResult, displayMs);
   }
 
   function closeResult() {
@@ -232,7 +235,7 @@
     confettiLayer.innerHTML = "";
     spinButton.disabled = false;
     spinLabel.textContent = "SPIN";
-    statusText.textContent = "Tap SPIN to play";
+    statusText.textContent = "Toca SPIN para jugar";
     spinButton.focus({ preventScroll: true });
   }
 
@@ -340,7 +343,7 @@
     ready = true;
     spinButton.disabled = false;
     spinLabel.textContent = "SPIN";
-    statusText.textContent = "Tap SPIN to play";
+    statusText.textContent = "Toca SPIN para jugar";
   }
 
   initializeGame().catch(() => {
@@ -350,7 +353,7 @@
     ready = true;
     spinButton.disabled = false;
     spinLabel.textContent = "SPIN";
-    statusText.textContent = "Tap SPIN to play";
+    statusText.textContent = "Toca SPIN para jugar";
   });
 
   if ("serviceWorker" in navigator && location.protocol !== "file:") {
