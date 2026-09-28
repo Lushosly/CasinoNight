@@ -321,7 +321,6 @@
     if (!spinning) currentIndexes.forEach((index, reelIndex) => normalizeReel(reelIndex, index));
   });
 
-  // Optional maintenance shortcut: add ?reset=1 to the URL once to clear local counters.
   const params = new URLSearchParams(location.search);
   if (params.get("reset") === "1") {
     localStorage.removeItem(STORAGE_WINS);
@@ -338,7 +337,6 @@
     buildReels();
     updateOddsNote();
 
-    // Give Safari one paint after image decoding before enabling the first spin.
     await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
     ready = true;
     spinButton.disabled = false;
@@ -347,7 +345,6 @@
   }
 
   initializeGame().catch(() => {
-    // If decoding fails for any reason, still let the game run with normal browser loading.
     buildReels();
     updateOddsNote();
     ready = true;
