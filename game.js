@@ -234,8 +234,8 @@
     overlay.setAttribute("aria-hidden", "true");
     confettiLayer.innerHTML = "";
     spinButton.disabled = false;
-    spinLabel.textContent = "SPIN";
-    statusText.textContent = "Toca SPIN para jugar";
+    spinLabel.textContent = "PLAY";
+    statusText.textContent = "Toca PLAY para jugar";
     spinButton.focus({ preventScroll: true });
   }
 
@@ -340,8 +340,8 @@
     await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
     ready = true;
     spinButton.disabled = false;
-    spinLabel.textContent = "SPIN";
-    statusText.textContent = "Toca SPIN para jugar";
+    spinLabel.textContent = "PLAY";
+    statusText.textContent = "Toca PLAY para jugar";
   }
 
   initializeGame().catch(() => {
@@ -349,8 +349,8 @@
     updateOddsNote();
     ready = true;
     spinButton.disabled = false;
-    spinLabel.textContent = "SPIN";
-    statusText.textContent = "Toca SPIN para jugar";
+    spinLabel.textContent = "PLAY";
+    statusText.textContent = "Toca PLAY para jugar";
   });
 
   if ("serviceWorker" in navigator && location.protocol !== "file:") {
