@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
+  <meta name="theme-color" content="#170d08" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Casino Night" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="assets/icon-192.png" />
+  <title>Casino Night</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="ambient" aria-hidden="true"></div>
+
+  <main class="app-shell">
+    <section class="machine" aria-label="Casino Night slot machine">
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee-bulbs marquee-bulbs-top"></div>
+        <h1 id="gameTitle">Casino Night</h1>
+        <p>Match all 3 values to hit the jackpot</p>
+      </div>
+
+      <div class="reel-deck">
+        <div class="payline payline-top" aria-hidden="true"></div>
+        <div class="reels" id="reels" aria-live="polite" aria-label="Slot reels">
+          <div class="reel-window"><div class="reel-strip" data-reel="0"></div></div>
+          <div class="reel-window"><div class="reel-strip" data-reel="1"></div></div>
+          <div class="reel-window"><div class="reel-strip" data-reel="2"></div></div>
+        </div>
+        <div class="payline payline-bottom" aria-hidden="true"></div>
+        <div class="payline-arrow payline-arrow-left" aria-hidden="true">▶</div>
+        <div class="payline-arrow payline-arrow-right" aria-hidden="true">◀</div>
+      </div>
+
+      <div class="status" id="statusText">Tap SPIN to play</div>
+
+      <button class="spin-button" id="spinButton" type="button">
+        <span class="spin-button-shine"></span>
+        <span id="spinLabel">SPIN</span>
+      </button>
+
+      <p class="odds-note" id="oddsNote"></p>
+    </section>
+  </main>
+
+  <section class="result-overlay" id="resultOverlay" aria-hidden="true">
+    <div class="confetti-layer" id="confettiLayer" aria-hidden="true"></div>
+    <div class="result-card" id="resultCard" role="dialog" aria-modal="true" aria-labelledby="resultTitle">
+      <div class="result-kicker" id="resultKicker"></div>
+      <h2 id="resultTitle"></h2>
+      <img id="resultImage" alt="" />
+      <p id="resultMessage"></p>
+      <button id="playAgainButton" class="play-again" type="button">PLAY AGAIN</button>
+    </div>
+  </section>
+
+  <noscript>This game requires JavaScript to run.</noscript>
+  <script src="config.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
