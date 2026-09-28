@@ -21,8 +21,8 @@
   const playAgainButton = document.getElementById("playAgainButton");
   const confettiLayer = document.getElementById("confettiLayer");
 
-  titleEl.textContent = config.title || "Casino Night";
-  document.title = config.title || "Casino Night";
+  titleEl.textContent = config.title || "Jackpot de los valores";
+  document.title = config.title || "Jackpot de los valores";
 
   const STORAGE_WINS = "casinoNightV1_wins";
   const STORAGE_SPINS = "casinoNightV1_spins";
@@ -209,7 +209,7 @@
       playWinSound();
     } else {
       resultKicker.textContent = "Not this spin";
-      resultTitle.textContent = "Better luck next time";
+      resultTitle.textContent = "Mejor suerte para la próxima";
       resultImage.src = "assets/crying-guy.png";
       resultImage.alt = "Crying character";
       resultMessage.textContent = "Give it another spin!";

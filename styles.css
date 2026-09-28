@@ -186,17 +186,19 @@ button { font: inherit; }
   top: 0;
   width: 100%;
   will-change: transform;
-  transform: translateY(0);
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
 }
 
-.reel-strip.spinning img { filter: blur(.45px) saturate(1.06); }
+/* Safari/iPad renders more reliably without aggressive blur while spinning. */
+.reel-strip.spinning img { opacity: .99; }
 
 .reel-item {
   width: var(--reel-size);
   height: var(--reel-size);
   display: grid;
   place-items: center;
-  padding: 9%;
+  padding: 6%;
 }
 
 .reel-item img {
@@ -205,7 +207,7 @@ button { font: inherit; }
   object-fit: contain;
   pointer-events: none;
   -webkit-user-drag: none;
-  filter: drop-shadow(0 6px 5px rgba(48,36,0,.19));
+  filter: drop-shadow(0 4px 4px rgba(48,36,0,.16));
   backface-visibility: hidden;
   transform: translateZ(0);
 }

@@ -1,6 +1,6 @@
 {
-  "name": "Casino Night",
-  "short_name": "Casino Night",
+  "name": "Jackpot de los valores",
+  "short_name": "Jackpot Valores",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#170d08",

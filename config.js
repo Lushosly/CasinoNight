@@ -1,10 +1,10 @@
 /*
-  Casino Night V1.1 configuration
+  Jackpot de los valores V1.3 configuration
   -------------------------------
   You can safely change these values without touching the game code.
 */
 window.CASINO_CONFIG = {
-  title: "Casino Night",
+  title: "Jackpot de los valores",
 
   // "natural" = each reel independently chooses one of 4 symbols.
   // With 4 equally likely symbols, 3 identical = 1/16 (6.25%) jackpot odds.
@@ -16,15 +16,15 @@ window.CASINO_CONFIG = {
   // on this iPad/browser. Leave null for no limit.
   maximumJackpots: null,
 
-  resultDisplayMs: 4200,
+  resultDisplayMs: 4600,
   sounds: true,
   confetti: true,
   showOdds: false,
 
-  // V1.1: deliberately slower reels so guests can actually see the values.
+  // V1.2: slower reels, more visible motion, better Safari rendering.
   // Each later reel stops a little after the previous one.
-  spinDurationMs: [3300, 4000, 4700],
-  spinCycles: [3, 4, 5],
+  spinDurationMs: [4200, 5100, 6000],
+  spinCycles: [4, 5, 6],
 
   symbols: [
     { id: "red",       label: "Red value",        image: "assets/value-red.png" },

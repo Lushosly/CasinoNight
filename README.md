@@ -1,4 +1,4 @@
-# Casino Night V1.1
+# Jackpot de los valores V1.3
 
 This update addresses the two iPad issues found in V1:
 
@@ -29,3 +29,11 @@ Higher duration numbers make the reels slower. The three numbers correspond to r
 ## Jackpot rule
 
 Default remains natural random odds with four equally likely values. Three identical symbols = jackpot, which is naturally **1 in 16 (6.25%) per spin**.
+
+
+## V1.3 fixes
+
+- Reels spin more slowly for better visibility on iPad/Safari
+- Symbol backgrounds were cleaned to transparent PNGs so the white boxes no longer show
+- Reduced Safari blur/compositing issues that could make a reel look empty while spinning
+- Cache version updated, so replacing all files on GitHub Pages should force a fresh version sooner
