@@ -3,7 +3,7 @@ window.CASINO_CONFIG = {
 
 
   oddsMode: "custom",
-  jackpotOneIn: 7,
+  jackpotOneIn: 6,
 
 
   maximumJackpots: null,
