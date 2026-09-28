@@ -1,19 +1,11 @@
-/*
-  Jackpot de los valores V1.6 configuration
-  -------------------------------
-  You can safely change these values without touching the game code.
-*/
 window.CASINO_CONFIG = {
   title: "Jackpot de los valores",
 
-  // "natural" = each reel independently chooses one of 4 symbols.
-  // With 4 equally likely symbols, 3 identical = 1/16 (6.25%) jackpot odds.
-  // "custom" = use jackpotOneIn below (for example 25 = 1 in 25).
+
   oddsMode: "custom",
   jackpotOneIn: 7,
 
-  // Set to a number (for example 10) to stop jackpots after that many wins
-  // on this iPad/browser. Leave null for no limit.
+
   maximumJackpots: null,
 
   resultDisplayWinMs: 5600,
@@ -22,8 +14,7 @@ window.CASINO_CONFIG = {
   confetti: true,
   showOdds: false,
 
-  // V1.2: slower reels, more visible motion, better Safari rendering.
-  // Each later reel stops a little after the previous one.
+
   spinDurationMs: [4700, 5700, 6700],
   spinCycles: [4, 5, 6],
 
