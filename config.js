@@ -1,5 +1,5 @@
 /*
-  Jackpot de los valores V1.5 configuration
+  Jackpot de los valores V1.6 configuration
   -------------------------------
   You can safely change these values without touching the game code.
 */
@@ -9,8 +9,8 @@ window.CASINO_CONFIG = {
   // "natural" = each reel independently chooses one of 4 symbols.
   // With 4 equally likely symbols, 3 identical = 1/16 (6.25%) jackpot odds.
   // "custom" = use jackpotOneIn below (for example 25 = 1 in 25).
-  oddsMode: "custom",
-  jackpotOneIn: 7,
+  oddsMode: "natural",
+  jackpotOneIn: 16,
 
   // Set to a number (for example 10) to stop jackpots after that many wins
   // on this iPad/browser. Leave null for no limit.

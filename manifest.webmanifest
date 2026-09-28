@@ -3,8 +3,8 @@
   "short_name": "Jackpot Valores",
   "start_url": "./",
   "display": "standalone",
-  "background_color": "#170d08",
-  "theme_color": "#170d08",
+  "background_color": "#091c5a",
+  "theme_color": "#091c5a",
   "orientation": "any",
   "icons": [
     { "src": "assets/icon-192.png", "sizes": "192x192", "type": "image/png" },

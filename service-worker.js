@@ -1,10 +1,10 @@
-const CACHE = "casino-night-v1-5";
+const CACHE = "casino-night-v1-6";
 const ASSETS = [
   "./",
   "./index.html",
-  "./styles.css?v=1.1.0",
-  "./config.js?v=1.1.0",
-  "./game.js?v=1.1.0",
+  "./styles.css?v=1.6.0",
+  "./config.js?v=1.6.0",
+  "./game.js?v=1.6.0",
   "./manifest.webmanifest",
   "./assets/value-red.png",
   "./assets/value-yellow.png",

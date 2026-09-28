@@ -200,19 +200,19 @@
     resultCard.classList.toggle("lose", !won);
 
     if (won) {
-      resultKicker.textContent = "¡3 Valores Conseguidos!";
-      resultTitle.textContent = "¡Jackpot!";
+      resultKicker.textContent = "3 matching values";
+      resultTitle.textContent = "Jackpot!";
       resultImage.src = "assets/celebrating-baby.png";
       resultImage.alt = "Celebrating baby";
-      resultMessage.textContent = "¡Lo Lograste, Felicidades!";
+      resultMessage.textContent = "You matched all three — you're a winner!";
       if (config.confetti) launchConfetti();
       playWinSound();
     } else {
-      resultKicker.textContent = "";
+      resultKicker.textContent = "Not this spin";
       resultTitle.textContent = "Mejor suerte para la próxima!";
       resultImage.src = "assets/crying-guy.png";
       resultImage.alt = "Crying character";
-      resultMessage.textContent = "Toca PLAY para intentarlo otra vez.";
+      resultMessage.textContent = "Toca SPIN para intentarlo otra vez.";
       confettiLayer.innerHTML = "";
       playLoseSound();
     }
@@ -234,14 +234,14 @@
     overlay.setAttribute("aria-hidden", "true");
     confettiLayer.innerHTML = "";
     spinButton.disabled = false;
-    spinLabel.textContent = "PLAY";
-    statusText.textContent = "Toca PLAY para jugar";
+    spinLabel.textContent = "SPIN";
+    statusText.textContent = "Toca SPIN para jugar";
     spinButton.focus({ preventScroll: true });
   }
 
   function launchConfetti() {
     confettiLayer.innerHTML = "";
-    const colors = ["#ffd84d", "#ff5d3f", "#5ed2ff", "#ff4c85", "#ffffff", "#67e081"];
+    const colors = ["#ffc908", "#ff6371", "#00a9e0", "#a4d7f4", "#ffffff", "#00aa8e", "#005596"];
     for (let i = 0; i < 110; i++) {
       const piece = document.createElement("span");
       piece.className = "confetti";
